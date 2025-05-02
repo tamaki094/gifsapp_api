@@ -15,7 +15,7 @@ Create Table Usuarios (
 
 insert into Roles(Rol) VALUES('ROOT');
 SELECT * FROM Roles;
-
+select * from Usuarios;
 
 drop table Usuarios;
 
