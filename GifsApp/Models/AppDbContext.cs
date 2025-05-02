@@ -35,9 +35,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Contrasena)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -45,10 +43,8 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Usuario)
-                .HasForeignKey<Usuario>(d => d.Id)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .IsRequired(false)
+            entity.HasOne(d => d.RolNavigation).WithMany(p => p.Usuarios)
+                .HasForeignKey(d => d.Rol)
                 .HasConstraintName("FK_Usuarios_Roles");
         });
 

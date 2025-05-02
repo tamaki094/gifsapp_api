@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GifsApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb5aac350dfb499a87b8f6ac981241a0844c65dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("GifsApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GifsApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

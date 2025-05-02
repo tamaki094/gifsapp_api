@@ -1,5 +1,6 @@
 ﻿using GifsApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GifsApp.Controllers
 {
@@ -15,7 +16,33 @@ namespace GifsApp.Controllers
         {
             using (AppDbContext context = new AppDbContext())
             {
-                return context.Roles.ToList();
+
+                //var usuariosConRoles = context.Usuarios
+                //.Include(u => u.RolNavigation) // Carga la relación con `Roles`
+                //.Select(u => new
+                //{
+                //    u.Id,
+                //    u.Nombre,
+                //    u.Contrasena,
+                //    Rol = new
+                //    {
+                //        u.RolNavigation.Id,  // ID del rol
+                //        u.RolNavigation.Rol  // Nombre del rol
+                //    }
+                //})
+                //.ToList();
+
+                var usuariosConRoles = context.Usuarios
+                    .Select(u => new
+                    {
+                        u.Id,
+                        u.Nombre,
+                        RolDescripcion = u.RolNavigation.Rol // Personaliza la salida con solo la descripción del rol
+                    })
+                    .ToList();
+
+
+                return usuariosConRoles;
             }
 
         }

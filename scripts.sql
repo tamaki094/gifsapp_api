@@ -10,8 +10,13 @@ Create Table Usuarios (
 	Contrasena varchar(100),
 	Rol int,
 	CONSTRAINT PK_Usuarios PRIMARY KEY (ID),
-	CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (ID) REFERENCES Roles(ID)
+	CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (Rol) REFERENCES Roles(ID)
 );
 
+insert into Roles(Rol) VALUES('ROOT');
+SELECT * FROM Roles;
 
---dotnet ef dbcontext scaffold "Server=localhost\\SQLEXPRESS;Database=GifsApp;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context AppDbContext
+
+drop table Usuarios;
+
+--dotnet ef dbcontext scaffold "Server=localhost\SQLEXPRESS;Database=GifsApp;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context AppDbContext

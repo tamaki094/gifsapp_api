@@ -15,5 +15,5 @@ public partial class Usuario
     public int? Rol { get; set; }
 
     [JsonIgnore]
-    public virtual Role? IdNavigation { get; set; }
+    public virtual Role? RolNavigation { get; set; }
 }
