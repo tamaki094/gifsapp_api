@@ -17,7 +17,7 @@ namespace GifsApp.Controllers
     {
         private IConfiguration _configuration;
 
-        public UsuariosController(IConfiguration conf) 
+        public UsuariosController(IConfiguration conf)
         {
             this._configuration = conf;
         }
@@ -89,19 +89,19 @@ namespace GifsApp.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("login")]
-        public dynamic Login([FromBody] Object optData)
+        public Response Login([FromBody] Object optData)
         {
             var data = JsonConvert.DeserializeObject<dynamic>(optData.ToString());
             string user = data.usuario.ToString();
             string password = data.password.ToString();
 
-            using (AppDbContext context = new AppDbContext()) 
+            using (AppDbContext context = new AppDbContext())
             {
                 Usuario usr = context.Usuarios.Where(w => w.Nombre == user && w.Contrasena == password).FirstOrDefault();
 
-                if(usr == null)
+                if (usr == null)
                 {
-                    return new
+                    return new Response
                     {
                         success = false,
                         message = "Credenciales incorrectas",
@@ -112,11 +112,12 @@ namespace GifsApp.Controllers
                 {
                     var jwt = _configuration.GetSection("Jwt").Get<Jwt>();
 
+
                     var claims = new[]
                     {
                         new Claim(JwtRegisteredClaimNames.Sub, jwt.Subject),
                         new Claim(JwtRegisteredClaimNames.Jti,  Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                        new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
                         new Claim("id", usr.Id.ToString()),
                         new Claim("usuario", usr.Nombre.ToString())
                     };
@@ -128,18 +129,18 @@ namespace GifsApp.Controllers
                         jwt.Issuer,
                         jwt.Audience,
                         claims,
-                        expires: DateTime.Now.AddMinutes(4),
+                        expires: DateTime.Now.AddMinutes(10),
                         signingCredentials: singIn
                     );
 
-                    return new
+                    return new Response
                     {
                         success = true,
                         message = "exito",
                         result = new JwtSecurityTokenHandler().WriteToken(token)
                     };
                 }
-            
+
             }
 
         }

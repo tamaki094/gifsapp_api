@@ -7,7 +7,7 @@ namespace GifsApp.Controllers
     [Route("roles")]
     public class RolesController : ControllerBase
     {
-       
+
 
         [HttpGet]
         [Route("listar")]
@@ -17,7 +17,7 @@ namespace GifsApp.Controllers
             {
                 return context.Roles.ToList();
             }
-            
+
         }
 
     }

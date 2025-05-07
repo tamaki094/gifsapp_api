@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "GifsApp.Controllers.ChatController",
+    "Method": "EnviarMensaje",
+    "RelativePath": "chat/enviar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mensaje",
+        "Type": "GifsApp.Models.Chat",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GifsApp.Controllers.ChatController",
+    "Method": "ListarMensajes",
+    "RelativePath": "chat/mensajes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GifsApp.Controllers.RolesController",
     "Method": "ListarRoles",
     "RelativePath": "roles/listar",
@@ -49,6 +75,16 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "GifsApp.Models.Response",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

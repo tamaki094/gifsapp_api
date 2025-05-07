@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace GifsApp.Models;
 
@@ -14,6 +13,5 @@ public partial class Usuario
 
     public int? Rol { get; set; }
 
-    [JsonIgnore]
     public virtual Role? RolNavigation { get; set; }
 }
